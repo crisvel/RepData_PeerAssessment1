@@ -107,11 +107,15 @@ StepsPerTime <- aggregate(steps~interval,data=activityData,FUN=mean,na.action=na
 StepsPerTime$time <- StepsPerTime$interval/100
 
 # draw the line plot
-
+png("plot1.png")
 h <- ggplot(StepsPerTime, aes(time, steps))
 h+geom_line(col="red")+ggtitle("Average steps per time interval")+xlab("Time")+ylab("Steps")+theme(plot.title = element_text(face="bold", size=12))
+dev.off()
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+```
+## quartz_off_screen 
+##                 2
+```
 
 
