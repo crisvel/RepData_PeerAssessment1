@@ -117,5 +117,7 @@ dev.off()
 ## quartz_off_screen 
 ##                 2
 ```
+![](plot1.png)
+
 
 

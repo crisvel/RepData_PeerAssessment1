@@ -93,5 +93,7 @@ h <- ggplot(StepsPerTime, aes(time, steps))
 h+geom_line(col="red")+ggtitle("Average steps per time interval")+xlab("Time")+ylab("Steps")+theme(plot.title = element_text(face="bold", size=12))
 dev.off()
 ```
+![](plot1.png)
+
 
 
