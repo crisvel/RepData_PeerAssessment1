@@ -80,7 +80,7 @@ median(StepsPerDay$Steps, na.rm=TRUE)
 ```
 ## What is the average daily activity pattern?
 **4. Time series plot of the average number of steps taken**
-```{r}
+```{r, message=FALSE}
 # create table with steps per time
 StepsPerTime <- aggregate(steps~interval,data=activityData,FUN=mean,na.action=na.omit)
 
@@ -94,7 +94,3 @@ h+geom_line(col="red")+ggtitle("Average steps per time interval")+xlab("Time")+y
 dev.off()
 ```
 ![](plot1.png)
-
-
-
-
