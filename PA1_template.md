@@ -5,6 +5,7 @@ date: "9/23/2020"
 output: 
   html_document:
     keep_md: true
+    self_contained: yes
     highlight: pygments
     theme: spacelab
     toc: yes
@@ -24,6 +25,8 @@ header-includes: \usepackage{graphicx}
 9. All of the R code needed to reproduce the results (numbers, plots, etc.) in the report 
 
 ***
+
+
 ## Loading and preprocessing the data
 **1. Code for reading the dataset and/or processing the data.**
 
@@ -75,7 +78,7 @@ g <- ggplot(StepsPerDay, aes(Steps))
 g+geom_histogram(boundary=0, binwidth=2500, col="grey", fill="darkblue") + ggtitle("Histogram of steps per day")+xlab("Steps")+ylab("Frequency")+theme(plot.title = element_text(face="bold", size=12))+scale_x_continuous(breaks=seq(0,25000,2500))+scale_y_continuous(breaks=seq(0,18,2))
 dev.off()
 ```
-![ Histogram of the total number of steps taken each day](hist1.png)
+![ Histogram of the total number of steps taken each day](figures/hist1.png)
 
 ## What is mean total number of steps taken per day?
 **3. Mean and median number of steps taken each day.**
@@ -113,7 +116,7 @@ h <- ggplot(StepsPerTime, aes(time, steps))
 h+geom_line(col="red")+ggtitle("Average steps per time interval")+xlab("Time")+ylab("Steps")+theme(plot.title = element_text(face="bold", size=12))
 dev.off()
 ```
-![Time series](plot1.png)
+![Time series](figures/plot1.png)
 
 
 ## Imputing missing values
@@ -179,7 +182,7 @@ g <- ggplot(StepsPerDayFull, aes(Steps))
 g+geom_histogram(boundary=0, binwidth=2500, col="darkblue", fill="blue")+ggtitle("Histogram of steps per day")+xlab("Steps")+ylab("Frequency")+theme(plot.title = element_text(face="bold", size=12))+scale_x_continuous(breaks=seq(0,25000,2500))+scale_y_continuous(breaks=seq(0,26,2))
 dev.off()
 ```
-![Histogram of the total number of steps taken each day with missing data filled in](hist2.png)  
+![Histogram of the total number of steps taken each day with missing data filled in](figures/hist2.png)  
 
 Mean and median total number of steps taken per day with the missing values filled in.
 
@@ -237,10 +240,11 @@ head(activityFull, n=10)
 StepsPerTimeDT <- aggregate(steps~interval+DayType,data=activityFull,FUN=mean,na.action=na.omit)
 # variable time (more comprensible for the graph axis)
 StepsPerTimeDT$time <- StepsPerTime$interval/100
+
 # draw the line plot
 png("plot2.png")
 j <- ggplot(StepsPerTimeDT, aes(time, steps))
 j+geom_line(col="red")+ggtitle("Average steps per time interval: weekdays vs. weekends")+xlab("Time")+ylab("Steps")+theme(plot.title = element_text(face="bold", size=12))+facet_grid(DayType ~ .)
 dev.off()
 ```
-![ Two time series plot of the 5-minute interval](plot2.png)
+![ Two time series plot of the 5-minute interval](figures/plot2.png)
